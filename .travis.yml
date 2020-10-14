@@ -2,7 +2,7 @@ dist: xenial
 
 before_install:
   - sudo apt-get update
-  - sudo apt-get -y install qemu-img qemu-system-x86_64 python3
+  - sudo apt-get -y install qemu python3
   
 script:
   - cd AutoOSInstall && ./apply-patches.sh && cd ..

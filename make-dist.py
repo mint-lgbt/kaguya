@@ -53,7 +53,7 @@ AUTO_INSTALL_TIMEOUT = 300
 PATCHED_ISO = 'TempleSlave.iso'
 
 QEMU_COMMAND = [
-        'qemu-system-x86_64',
+        'qemu-system',
         '-hda', DISK_IMG,
         '-machine', 'kernel_irqchip=off',
         '-smp', 'cores=1',

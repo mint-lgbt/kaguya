@@ -47,6 +47,7 @@ QEMU_START_DELAY = 3
 
 SLAVE_HC_Z = 'AutoOSInstall/SlaveOnce.HC.Z'
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AUTO_INSTALL_PATH = 'AutoOSInstall'
 AUTO_INSTALL_TIMEOUT = 300
 
@@ -121,7 +122,7 @@ if not args.skip_tos_install:
     subprocess.check_call([INJECT_BIN, PATCHED_ISO, 'Once.HC.Z', SLAVE_HC_Z])
 
     run_qemu_and_mfa(QEMU_COMMAND + ['-cdrom', PATCHED_ISO, '-boot', 'd'],
-            os.path.join('AutoOSInstall/install.script'), AUTO_INSTALL_TIMEOUT)
+            os.path.join(BASE_DIR, 'AutoOSInstall/install.script'), AUTO_INSTALL_TIMEOUT)
 
 mkdist_script = os.path.join(DISTRO_DIR, 'mkdist.script')
 mkdist_timeout = float(open(os.path.join(DISTRO_DIR, 'mkdist-timeout')).read())

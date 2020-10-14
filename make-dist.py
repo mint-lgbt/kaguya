@@ -60,7 +60,7 @@ QEMU_COMMAND = [
         '-m', str(MEM_SIZE),
         '-rtc', 'base=localtime',
         '-soundhw', 'pcspk',
-        '-serial', 'tcp::%d,server' % MFA_PORT]
+        '-serial', 'tcp::%d,server,nowait' % MFA_PORT]
 
 ENABLE_KVM = True
 

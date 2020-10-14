@@ -3,6 +3,7 @@ dist: xenial
 before_install:
   - sudo apt-get update
   - sudo apt-get -y install qemu python3
+  - python3 -m pip install isoc fuse
   
 script:
   - cd AutoOSInstall && ./apply-patches.sh && cd ..

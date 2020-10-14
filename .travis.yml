@@ -9,7 +9,7 @@ script:
   - cd Shrine && ./apply-patches.sh && cd ..
   - qemu-img create -f qcow2 ~/shrine.img 2G
   - mkdir PkgBin
-  -./make-dist.py TOS_Distro.ISO Shrine ~/shrine.img
+  - ./make-dist.py TOS_Distro.ISO Shrine ~/shrine.img
 
 after_success:
 - echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa

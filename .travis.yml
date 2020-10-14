@@ -1,0 +1,19 @@
+dist: xenial
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get -y install qemu-img qemu-system-x86_64 python3
+  
+script:
+  - cd AutoOSInstall && ./apply-patches.sh && cd ..
+  - cd Shrine && ./apply-patches.sh && cd ..
+  - qemu-img create -f qcow2 ~/shrine.img 2G
+  - mkdir PkgBin
+  -./make-dist.py TOS_Distro.ISO Shrine ~/shrine.img
+
+after_success:
+- echo "${SFTP_KEY}" | base64 --decode >/tmp/sftp_rsa
+- curl --ftp-create-dirs
+       -T Shrine-HEAD.iso
+       --key /tmp/sftp_rsa
+       sftp://${SFTP_USER}:${SFTP_PASSWORD}@${SFTP_HOST}/var/www/files/kaguya/nightly/$(date %m%u%Y%N)/Kaguya-$(date %m%u%Y)-NIGHTLY.iso
